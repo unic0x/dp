@@ -20,9 +20,22 @@ router
     res
       .status(200)
       .json({
-        status: "Aurora Dispenser is alive!",
+        status: "Store dispenser is alive!",
         uptime: process.uptime(),
         dateTime: new Date().toISOString(),
+      });
+  })
+
+   // Download apk
+   .get("/download/apk", (req, res) => {
+
+    const account = "https://localhost/apk.apk";
+
+    res
+      .status(200)
+      .json({
+        status: account,
+        
       });
   })
 

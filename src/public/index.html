@@ -1,30 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adobe for all Aurora OSS apps">
-    <meta name="author" content="Rahul Kumar Patel">
-    <meta name="keywords" content="Aurora, Aurora OSS, Aurora Store, Aurora Apps, Warden">
+    <meta name="description" content="Swagger-style API Documentation for Aurora OSS apps">
+    <meta name="keywords" content="API, Swagger, Aurora OSS">
     <meta name="robots" content="index, follow">
-    <title>Aurora OSS</title>
+    <title>Aurora OSS APIs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <style>
+      /* Light Theme Styles */
+      body.light {
+        background-color: #ffffff;
+        color: #000000;
+      }
+      .accordion-item.light {
+        background-color: #f8f9fa;
+        color: #000000;
+      }
+      .accordion-header .accordion-button.light {
+        background-color: #e7e9eb;
+        color: #000000;
+      }
+
+      /* Dark Theme Styles */
+      body.dark {
+        background-color: #121212;
+        color: #ffffff;
+      }
+      .accordion-item.dark {
+        background-color: #1e1e1e;
+        color: #ffffff;
+      }
+      .accordion-header .accordion-button.dark {
+        background-color: #2b2b2b;
+        color: #ffffff;
+      }
+
+      /* Button Group Styling */
+      .button-group {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        display: flex;
+        gap: 10px; /* Space between buttons */
+      }
+    </style>
   </head>
 
-  <body>
-    <div class="container align-content-center vh-100 ">
-      <div class="text-center">
-        <p class="display-1 text-primary">Aurora OSS</p>
-        <p class="ins">Will are back!</p>
-        <figcaption class="blockquote-footer">
-          Team Aurora ❤️
-        </figcaption>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='/AuroraStore'">Downloads</button>
+  <body class="light">
+    <!-- Button Group -->
+    <div class="button-group">
+      <button class="btn btn-primary" onclick="window.location.href='/download/apk'">Download APK</button>
+      <button class="btn btn-secondary theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+    </div>
+
+    <!-- Header Section -->
+    <div class="container vh-100">
+      <div class="text-center my-5">
+        <p class="display-1 text-primary">Store</p>
+        <img src="logo.jpeg" width="100px" />
+      </div>
+
+      <!-- API Documentation Section -->
+      <div class="mt-5">
+        <h2 class="text-center text-secondary">API Documentation</h2>
+        <div class="accordion mt-4" id="apiAccordion">
+          <!-- API 1 -->
+          <div class="accordion-item light">
+            <h2 class="accordion-header" id="apiOne">
+              <button class="accordion-button light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                GET /api/v1/products
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="apiOne"
+              data-bs-parent="#apiAccordion">
+              <div class="accordion-body">
+                <p><strong>Description:</strong> Fetch a list of all products.</p>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                  <li><code>category</code> (optional) - Filter products by category</li>
+                  <li><code>limit</code> (optional) - Limit the number of results</li>
+                </ul>
+                <p><strong>Response:</strong></p>
+                <pre>
+{
+  "status": "success",
+  "data": [
+    { "id": 1, "name": "Product 1", "price": 100 },
+    { "id": 2, "name": "Product 2", "price": 200 }
+  ]
+}
+                </pre>
+              </div>
+            </div>
+          </div>
+          <!-- API 2 -->
+          <div class="accordion-item light">
+            <h2 class="accordion-header" id="apiTwo">
+              <button class="accordion-button light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                POST /api/v1/products
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="apiTwo"
+              data-bs-parent="#apiAccordion">
+              <div class="accordion-body">
+                <p><strong>Description:</strong> Add a new product.</p>
+                <p><strong>Request Body:</strong></p>
+                <pre>
+{
+  "name": "New Product",
+  "price": 150,
+  "category": "Electronics"
+}
+                </pre>
+                <p><strong>Response:</strong></p>
+                <pre>
+{
+  "status": "success",
+  "message": "Product added successfully",
+  "data": { "id": 3, "name": "New Product", "price": 150 }
+}
+                </pre>
+              </div>
+            </div>
+          </div>
+          <!-- API 3 -->
+          <div class="accordion-item light">
+            <h2 class="accordion-header" id="apiThree">
+              <button class="accordion-button light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
+                DELETE /api/v1/products/{id}
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="apiThree"
+              data-bs-parent="#apiAccordion">
+              <div class="accordion-body">
+                <p><strong>Description:</strong> Delete a product by ID.</p>
+                <p><strong>Path Parameter:</strong></p>
+                <ul>
+                  <li><code>id</code> (required) - The ID of the product to delete</li>
+                </ul>
+                <p><strong>Response:</strong></p>
+                <pre>
+{
+  "status": "success",
+  "message": "Product deleted successfully"
+}
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script>
+      function toggleTheme() {
+        // Get the body element
+        const body = document.body;
+
+        // Toggle the class between light and dark
+        const isDark = body.classList.toggle('dark');
+        body.classList.toggle('light', !isDark);
+
+        // Update all accordion items and buttons
+        document.querySelectorAll('.accordion-item').forEach(item => {
+          item.classList.toggle('dark', isDark);
+          item.classList.toggle('light', !isDark);
+        });
+        document.querySelectorAll('.accordion-button').forEach(button => {
+          button.classList.toggle('dark', isDark);
+          button.classList.toggle('light', !isDark);
+        });
+      }
+    </script>
   </body>
 </html>
